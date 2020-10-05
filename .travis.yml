@@ -6,9 +6,6 @@ env:
   - DOCKER_COMPOSE_VERSION=1.23.2
 
 before_install:
-# nope
-
-install:
   - docker -v && docker-compose -v
   - sudo rm /usr/local/bin/docker-compose
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
@@ -21,6 +18,10 @@ install:
   - echo "$KUBE_CONFIG" | base64 --decode > ${HOME}/.kube/config # include to travis console env variable :cat ${HOME}/.kube/config | base64 | pbcopy
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin # set Docker username and password in Travis console
   - echo 'dockerhub credentials configured'
+
+
+
+install:
   - docker-compose -f docker/docker-compose-build.yaml build --parallel
   - docker-compose -f docker/docker-compose-build.yaml push
 
