@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-app
+  labels:
+    service: frontend-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: frontend-app
+  template:
+    metadata:
+      labels:
+        service: frontend-app
+        api: external
+    spec:
+      containers:
+      - name: uc-refactor-frontend
+        image: dominikjaeckle3000/uc-refactor-frontend
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
