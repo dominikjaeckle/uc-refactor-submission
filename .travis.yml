@@ -36,5 +36,5 @@ script:
   - kubectl get pods
   - kubectl set image deployments/backend-feed backend-feed=dominikjaeckle3000/uc-refactor-backend-feed:latest
   - kubectl set image deployments/backend-user backend-user=dominikjaeckle3000/uc-refactor-backend-user:latest
-  - kubectl set image deployments/frontend-app frontend-app=dominikjaeckle3000/uc-refactor-frontend:latest
+  - kubectl set image deployments/frontend-app uc-refactor-frontend=dominikjaeckle3000/uc-refactor-frontend:latest
   - kubectl set image deployments/rp rp=dominikjaeckle3000/uc-refactor-reverseproxy:latest
